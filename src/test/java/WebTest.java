@@ -22,8 +22,8 @@ public class WebTest {
     @Test
     void test2() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Алексей Орлов-Чесменский");
-        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+89650714523");
+        driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Иванов Андрей");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+89917546585");
         driver.findElement(By.cssSelector("[data-test-id=\"agreement\"]")).click();
         driver.findElement(By.className("button_view_extra")).click();
         String text = driver.findElement(By.cssSelector("[data-test-id=\"order-success\"]")).getText();
