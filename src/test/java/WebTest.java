@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,29 +16,17 @@ public class WebTest {
 
     @BeforeAll
     static void setUpAll() {
-        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
     }
 
-
-    @Test
-    void test1() {
-        driver.get("http://localhost:9999");
-        List<WebElement> elements = driver.findElements(By.className("input__control"));
-        elements.get(0).sendKeys("Иванов Иван");
-        elements.get(1).sendKeys("+79173223232");
-        driver.findElement(By.className("checkbox__box")).click();
-        driver.findElement(By.className("button_view_extra")).click();
-        String text = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText();
-        Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
-    }
     @Test
     void test2() {
         driver.get("http://localhost:9999");
-        driver.findElement(By.cssSelector("span[data-test-id='name'] input")).sendKeys("Иванов Иван");
-        driver.findElement(By.cssSelector("span[data-test-id='phone'] input")).sendKeys("+74324324323");
-        driver.findElement(By.cssSelector("label[data-test-id='agreement']")).click();
-        driver.findElement(By.cssSelector("button[type='button']")).click();
-        String text = driver.findElement(By.className("Success_successBlock__2L3Cw")).getText();
+        driver.findElement(By.cssSelector("[data-test-id=\"name\"] input")).sendKeys("Алексей Орлов-Чесменский");
+        driver.findElement(By.cssSelector("[data-test-id='phone'] input")).sendKeys("+89650714523");
+        driver.findElement(By.cssSelector("[data-test-id=\"agreement\"]")).click();
+        driver.findElement(By.className("button_view_extra")).click();
+        String text = driver.findElement(By.cssSelector("[data-test-id=\"order-success\"]")).getText();
         Assertions.assertEquals("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.", text.trim());
     }
     @BeforeEach
